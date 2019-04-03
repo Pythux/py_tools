@@ -17,7 +17,8 @@ def scan_with(path, timeout, change_since_mn, fn_path):
     """
     path = to_absolute_path(path)
 
-    find = 'find "{search_start}"'.format(search_start=path)
+    # LC_ALL=C make error message not localized, so in english
+    find = 'LC_ALL=C find "{search_start}"'.format(search_start=path)
     if change_since_mn:
         find += ' -mmin -{mn}'.format(mn=change_since_mn)
     outs, errs = sh(find, timeout=timeout)
@@ -41,7 +42,7 @@ def check_file_dirs_with(file_dirs, errs, fn_file, fn_dir):
     for err in errs:
         if err == '':
             pass
-        elif re.match(r"find: (.)+: ", err):
+        elif re.match(r"find: (.)+: ", err):  # Permission denied
             pass
         else:
             raise ValueError('unhandled ! “{}”'.format(repr(err)))
