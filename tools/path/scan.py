@@ -18,7 +18,7 @@ def scan_with(path, timeout, change_since_mn, fn_path):
     path = to_absolute_path(path)
 
     # LC_ALL=C make error message not localized, so in english
-    find = 'LC_ALL=C find "{search_start}"'.format(search_start=path)
+    find = 'find "{search_start}"'.format(search_start=path)
     if change_since_mn:
         find += ' -mmin -{mn}'.format(mn=change_since_mn)
     outs, errs = sh(find, timeout=timeout)

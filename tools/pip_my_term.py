@@ -13,6 +13,9 @@ class WeelEWonka:
             len(list(filter(lambda c: c == '\t', msg))) * 6
         print(msg, end='\r')
 
+    def msg_clear(self):
+        print(' ' * self.to_clear, end='\r')
+
     def dotdots(self):
         print('.', end='')
         sys.stdout.flush()
@@ -26,4 +29,10 @@ class WeelEWonka:
         self.to_clear = len(msg) + \
             len(list(filter(lambda c: c == '\t', msg))) * 6
         print(msg, end='')
+        sys.stdout.flush()
+
+    def better_msg_clear(self):
+        print('\b' * self.to_clear, end='')  # erase the last written char
+        print(' ' * self.to_clear, end='')
+        print('\b' * self.to_clear, end='')
         sys.stdout.flush()
