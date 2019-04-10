@@ -36,3 +36,31 @@ class WeelEWonka:
         print(' ' * self.to_clear, end='')
         print('\b' * self.to_clear, end='')
         sys.stdout.flush()
+
+
+class Color:
+    """enum to display colors"""
+    HEADER = '\033[95m'
+    OKBLUE = '\033[94m'
+    OKGREEN = '\033[92m'
+    WARNING = '\033[93m'
+    FAIL = '\033[91m'
+    ENDC = '\033[0m'  # color end
+    BOLD = '\033[1m'
+    UNDERLINE = '\033[4m'
+
+    color_dic = {
+        'HEADER': '\033[95m',
+        'OKBLUE': '\033[94m',
+        'OKGREEN': '\033[92m',
+        'WARNING': '\033[93m',
+        'FAIL': '\033[91m',
+        'ENDC': '\033[0m',  # color end
+        'BOLD': '\033[1m',
+        'UNDERLINE': '\033[4m',
+    }
+
+    @staticmethod
+    def c(msg, *add):
+        return ''.join([Color.color_dic[to_add] for to_add in add]) + \
+            msg + Color.ENDC
