@@ -4,7 +4,9 @@ import os
 def to_absolute_path(path):
     if path[0] == '~':
         path = path[2:]
-    return os.path.join(os.environ['HOME'], path)
+        return os.path.join(os.environ['HOME'], path)
+    else:
+        return os.path.join(os.getcwd(), path)
 
 
 def get_relative_path(root_path, abs_path):
